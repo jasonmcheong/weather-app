@@ -3,7 +3,9 @@ import React from 'react';
 const LocationList = props => {
     return (
         <div>
-            <h2>props.title goes here</h2>
+            {props.allLocations.map(location => {
+                return <h2>{location.title}</h2>;
+            })}
         </div>
     );
 };

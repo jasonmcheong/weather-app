@@ -8,10 +8,16 @@ class App extends Component {
         locationList: [],
     };
 
+    constructor(props) {
+        super(props);
+
+        this.handleLocation = this.handleLocation.bind(this);
+    }
+
     // Sets location received from Header input
-    handleLocation(loc) {
+    handleLocation(value) {
         this.setState({
-            locationList: loc,
+            locationList: value,
         });
     }
 
@@ -19,7 +25,7 @@ class App extends Component {
         return (
             <div className='App'>
                 <Header handleLocation={this.handleLocation} />
-                <LocationList />
+                <LocationList allLocations={this.state.locationList} />
             </div>
         );
     }
