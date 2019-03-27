@@ -14,7 +14,7 @@ class App extends Component {
         this.handleLocation = this.handleLocation.bind(this);
     }
 
-    // Sets location received from Header input
+    // Sets state location received from Header input
     handleLocation(value) {
         this.setState({
             locationList: value,
