@@ -11,6 +11,7 @@ class Header extends React.Component {
 
         this.state = {
             input: '',
+            fetchInProgress: false,
         };
     }
 
@@ -23,9 +24,18 @@ class Header extends React.Component {
     handleSubmit = evt => {
         evt.preventDefault();
         fetch(`${proxyURL}${targetURL}${this.state.input}`)
+            .then(this.setState({ fetchInProgress: true }))
             .then(res => res.json())
-            .then(res => this.props.handleLocation(res))
-            .catch(err => console.log(err));
+            .then(res => {
+                this.setState({ fetchInProgress: false });
+                this.props.handleLocation(res);
+            })
+            .catch(err => {
+                console.log(err);
+                this.setState({
+                    fetchInProgress: false,
+                });
+            });
     };
 
     render() {
@@ -35,6 +45,7 @@ class Header extends React.Component {
                     <input type='text' onChange={this.handleChange} value={this.state.input} />
                     <input type='submit' onClick={this.handleSubmit} />
                 </form>
+                {this.state.fetchInProgress && <h2>Please wait...</h2>}
             </header>
         );
     }
