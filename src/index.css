@@ -19,13 +19,27 @@ code {
 
 /*
 *
-*   MY STYLES
+*   OTHER
 *
 */
 body {
     padding-bottom: 50px;
     min-height: 100vh;
     background: linear-gradient(#abb0c4, #d2d9e1);
+}
+.loading {
+    max-width: 100vw;
+    max-height: 100vh;
+    font-size: 4.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.load-panel {
+    color: #233041;
+    background: rgb(169, 176, 195);
+    padding: 50px 70px 70px 70px;
 }
 
 /*
@@ -115,6 +129,12 @@ input[type='submit']:hover {
 *   WEATHER DISPLAY 
 *
 */
+.location-title {
+    color: #0f0d23;
+    margin: 20px 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
 .weather-display {
     width: 93%;
     margin: 0 auto;
@@ -171,7 +191,7 @@ input[type='submit']:hover {
 
 @media screen and (max-width: 650px) {
     h1 {
-        font-size: 2rem;
+        font-size: 3rem;
         margin-bottom: 20px;
     }
     header,
@@ -184,5 +204,10 @@ input[type='submit']:hover {
         font-size: 1rem;
         margin: 4px 0;
         padding: 12px 10px;
+    }
+    .load-panel {
+        color: #233041;
+        background: rgb(169, 176, 195);
+        padding: 35px 55px 55px 55px;
     }
 }

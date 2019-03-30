@@ -1,4 +1,5 @@
 import React from 'react';
+import Loading from './loading';
 
 let proxyURL = 'https://cors-anywhere.herokuapp.com/';
 let targetURL = 'https://www.metaweather.com/api/location/search/?query=';
@@ -21,19 +22,19 @@ class Header extends React.Component {
         });
     }
 
-    handleSubmit = (evt) => {
+    handleSubmit = evt => {
         // fetching the data from the weather API
         evt.preventDefault();
         fetch(`${proxyURL}${targetURL}${this.state.input}`)
             .then(this.setState({ fetchInProgress: true }))
-            .then((res) => res.json())
-            .then((res) => {
+            .then(res => res.json())
+            .then(res => {
                 this.setState({ fetchInProgress: false });
 
                 // calling the parent method to transfer data from child->parent
                 this.props.handleLocation(res);
             })
-            .catch((err) => {
+            .catch(err => {
                 console.log(err);
                 this.setState({
                     fetchInProgress: false,
@@ -46,17 +47,17 @@ class Header extends React.Component {
             // gets the values of the form then appends it to the url that is being fetched
             <header>
                 <h1>Weather App</h1>
-                <form className="inner-header">
+                <form className='inner-header'>
                     <input
-                        type="text"
+                        type='text'
                         onChange={this.handleChange}
                         value={this.state.input}
-                        placeholder="Type in a city"
+                        placeholder='Type in a city'
                     />
-                    <input type="submit" onClick={this.handleSubmit} />
+                    <input type='submit' onClick={this.handleSubmit} />
                 </form>
                 {/* placeholder loading message when fetching data */}
-                {this.state.fetchInProgress && <h2>Please wait...</h2>}
+                {this.state.fetchInProgress && <Loading />}
             </header>
         );
     }
